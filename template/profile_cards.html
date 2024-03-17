@@ -1,0 +1,653 @@
+
+{% load static %} 
+{% block content %} 
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Admin</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<!-- link admin.css -->
+<link rel="stylesheet" href="{% static 'admin.css' %}">
+<link rel="stylesheet" href="style.css">
+  <style>
+
+        body {
+      padding: 0%;
+      margin: 0%;
+      background-color: rgba(255, 255, 255, 0.9);
+      overflow-x: hidden;
+
+        }
+        .content-section-left {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-outer
+{    
+    border-style: solid;
+    width: 82%;
+    border-width: 1px;
+    border-color: #2b8f4a;
+    height: 88%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    justify-content: center;
+    /* border-radius: 10px; */
+}
+.card-heading
+{    width: 100%;
+    height: 10%;
+    color: rgb(256,256,256);
+    padding-left: 5%;
+    background-color: #2b8f4a;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+}
+.input-card-details
+{
+  margin-top: 3%;
+    width: 100%;
+    /* height: 178%; */
+    display: flow;
+}
+.card-type
+{
+    width: 100%;
+    height: 20%;
+    background-color: rgb(255, 255, 255);
+}
+.card-type td {
+
+  text-align: center;
+  width: 50%;
+}
+.input-box
+{
+    width: 100%;
+    height: 10%;
+    background-color: rgb(255, 255, 255);
+    padding-block:5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+input[type=text],input[type=date],input[type=number],input[type=password],input[type=email],select
+{
+    width: 50%;
+    height: 6vh;
+    border-radius: 5px;
+    border-style: none;
+    font-size: small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 550;
+    color:rgb(0, 0, 0);
+    background-color: rgb(6, 28, 100,0.1);
+    transition: 0.4s;
+}
+input[type=number]
+{
+    -webkit-appearance: none; 
+    -moz-appearance: textfield;
+}
+.card-details2
+{
+    width: 100%;
+    height: 15%;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+}
+.card-details2 td
+{
+   
+  text-align: center;
+}
+.input-box button
+{
+    background-color: rgb(255,216,21,0.7);
+    border-radius: 5px;
+    color: white;
+    width: 180px;
+    cursor: pointer;
+    margin: 20px;
+    padding: 8px 5px;
+    border: none;
+    font-size: 19px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    width: 241px;
+}
+
+
+    .home-outer {
+      width: 100%;
+    height: 17vh;
+    overflow-y: hidden;
+    position: fixed;
+    }
+
+    .top-navigation {
+      width: 100%;
+    height: 10vh;
+    background-color:#2b8f4a;
+    background-origin: content-box;
+    display: flex;
+    align-items: center;
+    }
+
+    .navigation-logo {
+       /*background-image: url('Picture33.png');*/
+      background-size: cover;
+      margin-inline-start: 2vh;
+      height: 90%;
+      width: 29vh;
+    }
+
+    .navbar {
+      width: 49%;
+    }
+
+    .container-fluid,
+    .d-flex {
+      width: 100%;
+
+    }
+
+    .form-control {
+      width: 50%;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      background-color: rgba(253, 253, 253, 0.958);
+      font-weight: 350;
+      font-family: calibri;
+      transition: 0.4s;
+    }
+    .form-control{
+      border-style: none;
+      /* background-color: rgb(215 215 215); */
+      color:rgb(98, 80, 80);
+    }
+
+
+    .form-control::-webkit-search-cancel-button {
+      display: none;
+    }
+
+
+    .form-control:hover,
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.456);
+      outline: none;
+      box-shadow: none;
+    }
+
+    .btn {
+      border-color: rgb(6, 28, 100);
+      color: rgb(6, 28, 100);
+      transition: 0.4s;
+    }
+
+    .btn:hover {
+      background-color: rgb(6, 28, 100);
+    }
+
+    .navigation-item {
+
+      height: 100%;
+      width: 35%;
+      padding-right: 2%;
+
+    }
+
+    .action-table {
+      width: 100%;
+      height: 100%;
+      border-collapse: separate;
+      justify-content: flex-end;
+      align-items: center;
+      display: grid;
+      z-index: 1;
+      position: relative;
+      border-collapse: collapse;
+    }
+
+    .action table td {
+      display: inline-block;
+    }
+
+    .login-box,
+    .signup-box,
+    .admin-box,
+    .logout-box,
+    .profile-box {
+      border-style: none;
+      background-color: rgba(93, 236, 115, 0.355);
+      transition: 0.3s;
+      font-size: small;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 550;
+      color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 91px;
+      height: 40px;
+    }
+
+    .login-box:hover,
+    .signup-box:hover,
+    .admin-box:hover {
+      background-color: rgb(0, 0, 0);
+      color: white;
+    }
+
+    .logout-box:hover {
+      background-color: rgb(239, 51, 36);
+      color: white;
+    }
+
+    .profile-box:hover {
+      transition: 0.5s;
+      transform: scale(1.2);
+    }
+
+    .action table .btn-primary,
+    .action table .btn {
+      border-style: none;
+      background-color: rgb(6, 28, 100);
+    }
+
+    .action table .btn:hover {
+      background-color: rgb(256, 256, 256);
+    }
+    .action-table td {
+      width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .category-navigation {
+      display: flex;
+      background-color: rgba(0, 0, 0);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .category-name {
+      font-size: small;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: rgba(0, 0, 0, 0.574);
+      font-weight: 550;
+      border-style: none;
+      width: fit-content;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 45px;
+      display: flex;
+      color: rgb(256, 256, 256);
+      justify-content: center;
+      align-items: center;
+      transition: 0.5s;
+    }
+
+    .category-name:hover {
+      background-color: rgba(255, 255, 255, 0.166);
+      color: rgb(222, 255, 201);
+      border-bottom-width: 3px;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      border-top-width: 0px;
+      border-style: solid;
+      border-color: rgb(255, 255, 255);
+      padding-left: 13px;
+      padding-right: 13px;
+    }
+    .staff-content{
+      width: 100%;
+    height: 100vh;
+    /* margin-top: 0%; */
+    display: flex;
+    position: static;
+    padding-top: 10%;
+    justify-content: center;
+    align-items: center;
+    
+    }
+    .view_table{
+      width: 88%;
+    /* min-height: 20%; */
+    /* text-wrap: nowrap; */
+    border-collapse: collapse;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    text-align: center;
+
+    margin-bottom: 2%;
+    margin-inline: auto;
+
+    }
+    .view_table th{
+      background-color: rgb(0 130 6);
+      color: rgb(256, 256, 256);
+      padding: 10px;
+      font-size: 15px;
+    }
+    .view_table td{
+      padding: 5px;
+      font-size: 14px;
+      
+    }
+    .view_table tr:nth-child(even){
+      background-color: rgba(0, 0, 0, 0.077);
+    }
+    .add_user{
+      width: 100%;
+    height: 10vh;
+    padding-top: 12%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    }
+    .list_table{
+       /* margin-top: 3%; */
+       width: 100%;
+    /* overflow-y: scroll; */
+    min-height: 80vh;
+ 
+    }
+    .edit-box
+    {
+      border-style: none;
+      transition: 0.3s;
+      font-size: small;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 550;
+      color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 91px;
+      height: 40px;
+    }
+    
+  textarea{
+    padding: 7px;
+    border-color: #108d38e6;
+    background-color: rgba(142, 212, 175, 0.352);
+    border-width: 1px;
+    border-style: double;
+    border-radius: 5px;
+    color:#108d38e6;
+    text-align: initial;
+  }
+  
+.content-section-right {
+  width: 55%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cards-list
+{
+  width: 100%;
+  max-height: 85%;
+  background-color: rgb(256,256,256);
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+.cards-outer{
+  padding-top: 3%;
+  width: 97%;
+  height: max-content;
+  table-layout: auto;
+}
+.cards-outer th{
+  text-align: center;
+  background-color:#ffe45b;
+}
+.cards-outer tbody tr:nth-child(odd) {
+  background-color: rgb(0,0,0,0.1); /* Set your desired background color */
+/* Set text color for better contrast */
+}
+.cards-outer td,th{
+  border-style: solid;
+  border-width:1px;
+  border-color:rgb(0,0,0,0.3);
+  text-align: center;
+  color:rgb(0, 0, 0);
+  border-collapse: collapse;
+  height:6vh;
+}
+
+
+.deactivate_button,.deactivate_button:hover,.deactivate_button:active
+{
+  background-color:rgb(239 51 36);
+  color:rgb(256,256,256);
+  border-style: none;
+  width: -webkit-fill-available;
+  margin:auto;
+}
+.activate_button,.activate_button:hover,.activate_button:active
+{
+  background-color:rgb(78 198 111);
+  color:rgb(256,256,256);
+  border-style: none;
+  width: -webkit-fill-available;
+  margin:auto;
+}
+.expired_button,.expired_button:hover,.expired_button:active
+{
+  background-color:rgb(0 0 0);
+  color:rgb(256,256,256);
+  border-style: none;
+  width: -webkit-fill-available;
+  margin:auto;
+}
+
+  </style>
+
+</head>
+<body>
+  
+{% if messages %}
+<script>
+    window.onload = function() {
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    };
+</script>
+{% endif %}
+
+  <div class="home-outer">
+
+    <div class="top-navigation">
+      <div class="navigation-logo"  style="background-image: url('{% static "Picture33.png" %}');"></div>
+      <!-- <div class="search-bar"><input type="search" placeholder="Search for home appliances"></div> -->
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <!-- <form class="d-flex" role="search" method="POST">
+            <input class="form-control me-2" type="search" style="border-style: none" placeholder="Search  for jobs" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit" name="submit" style="background-color: rgb(69 178 55);border: none;color: white;">Search</button>
+          </form> -->
+        </div>
+      </nav>
+      <div class="navigation-item">
+        <table class="action-table">
+        <!-- <form action="" method="POST"> -->
+          <tr>
+            <!-- add staff -->
+            <td><a href="index"><button class="login-box" name="login">Home</button></a></td>
+            <td><a href="logout"><button class="signup-box" name="signup">Sign Out</button></a></td>
+
+        </table>
+      </div>
+    </div>
+    <div class="category-navigation">
+      <a href="index"><button class='category-name' name='category' value='$categoryid' style='font-weight: 700;'>Home</button></a> 
+      <a href="list_jobs"><button class='category-name' name='category' value='$categoryid'>Jobs</button></a>
+      <a href="list_all_events"><button class='category-name' name='category' value='$categoryid' style='display: inline-block;'>Events</button></a>
+      <a href="list_all_plans"><button class='category-name' name='category' value='$categoryid'>Plans</button></a>
+      <a href="applicant_page"><button class='category-name' name='category' value='$categoryid' style='color:red;font-weight: 700;'>Profile</button></a>
+    </div>
+
+  </div>
+
+ <!--dashboard content goes here-->
+
+<!--staff content goes here-->
+<div class="staff-content">
+  <div class="content-section-left">
+
+
+
+    <form action="../add_card" method="POST" style="height:100%;width:100%;display:flex;justify-content:center;align-items:center;">
+      {%csrf_token%}
+    <div class="card-outer">
+      <div class="card-heading">Add new card</div>
+        <div class="input-card-details">
+              <!-- <table class="card-type">
+              <tr>                        
+              <td><input type="radio" name="card-type" value="D" required> Debit Card</td>
+              <td><input type="radio" name="card-type" value="C" required> Credit Card</td>
+              </tr>             
+              </table> -->
+              <div class="input-box">
+                  <label for="card-number">Card Number</label>
+                  <input type="text" name="card-number" placeholder="Enter card number" pattern="[0-9]{16}" required>
+              </div>
+              <div class="input-box">
+                  <label for="card-holder-name">Card Holder Name</label>
+                  <input style="margin-left: -6%;" type="text" name="card-holder-name"  min="1" max="20" placeholder="Enter card holder name" required>
+              </div>
+              <!-- <div class="input-box">
+                  <label for="bank-name">Bank Name</label>
+                  <input style="margin-left: 2%;" type="text" name="bank-name"  min="1" max="25" placeholder="Enter bank name" required>
+              </div> -->
+              <div class="input-box">
+                              <table class="card-details2">
+                  <tr>
+                      <td><label for="expiry-date">Expiry Date</label>
+                      <input type="date" name="expiry-date"  style="margin-left: 14%;" placeholder="MM/YY" min="<?php echo date('Y-m-d'); ?>" required></td>
+
+                      <!--<td><label for="cvv">CVV</label>  
+                      <input type="number" name="cvv" min="100" max="9999" placeholder="Enter CVV" required></td>-->
+                  </tr>
+              </table>
+              </div>
+              <div class="input-box" style="    padding-block: 0%;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+              <button type="submit" name="submit" style="border-radius: 10px;">Add Card</button>
+              </div>
+          </div>
+      </div>
+    </form>
+  </div>
+
+
+
+  <div class="content-section-right">
+
+    <form method="POST" style="height:100%;width:100%;display:flex;justify-content:center;align-items:center;">
+      <div class="card-outer" style="width:90%;">
+        <div class="card-heading">Added Cards</div>
+          <div class="cards-list">
+            <table class="cards-outer">
+              <tr>
+                  <th>Card Number</th>
+                  <th>Card Holder</th>
+                  <th>Expiry Date</th>
+                  <th>Action</th>
+              </tr> 
+          
+              <!-- Card_Holder_Name = models.CharField(max_length=20)
+              Card_No = models.DecimalField(max_digits=16, decimal_places=0, unique=True)
+              Exp_Date = models.DateField()
+              Card_Status = models.BooleanField(default=True) -->
+              
+              <!-- send_data -->
+              {% for i in send_data %}
+              <tr>
+                  <td>{{ i.Card_No }}</td>
+                  <td>{{ i.Card_Holder_Name }}</td>
+                  <td>{{ i.Exp_Date }}</td>
+                  <td>
+                      {% if i.Card_Status %}
+                          <form method='POST' action="{% url 'deactivate_card' %}">
+                              {% csrf_token %}
+                              <input type='hidden' name='card_id' value='{{ i.id }}'>
+                              <button type='submit' class='deactivate_button' name='deactivate_card_status_button'>DEACTIVATE</button>
+                          </form>
+                      {% else %}
+                          <form method='POST' action="{% url 'activate_card' %}">
+                              {% csrf_token %}
+                              <input type='hidden' name='card_id' value='{{ i.id }}'>
+                              <button type='submit' class='activate_button' name='activate_card_status_button'>ACTIVATE</button>
+                          </form>
+                      {% endif %}
+                  </td>
+              </tr>
+          {% endfor %}
+          
+              <!-- if nothing in send_data -->
+              {% if not send_data %}
+                  <tr>
+                      <td colspan="4">No cards added yet</td>
+                  </tr>
+              {% endif %}
+          </table>
+          
+</div>
+
+      </div>
+    </form>
+</div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+</div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
+{% endblock content %}

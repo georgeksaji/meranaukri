@@ -1,0 +1,765 @@
+
+{% load static %} 
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>MeraNaukri</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Honk&family=Kalnia:wght@100..700&family=Kode+Mono:wght@400..700&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <!-- <script>
+var jsMessage1 = <?php //echo json_encode($userId); ?>; // Embedding PHP variable in JavaScript
+var jsMessage2 = <?php //echo json_encode($usertype); ?>;
+
+// Display the PHP variable value as an alert in JavaScript
+alert(jsMessage1);
+alert(jsMessage2);
+</script> -->
+
+
+  <!--script-->
+
+  <style>
+    body {
+      padding: 0%;
+      margin: 0%;
+      background-color: rgba(255, 255, 255, 0.9);
+
+    }
+
+    .home-outer {
+      width: 100%;
+      height: 17vh;
+    }
+
+    .top-navigation {
+      width: 100%;
+      height: 10vh;
+      background-color:#108d38e6;
+      background-origin: content-box;
+      display: flex;
+      align-items: center;
+    }
+
+    .navigation-logo {
+       /*background-image: url('Picture33.png');*/
+      background-size: cover;
+      margin-inline-start: 2vh;
+      height: 90%;
+      width: 29vh;
+    }
+
+    .navbar {
+      width: 49%;
+    }
+
+    .container-fluid,
+    .d-flex {
+      width: 100%;
+
+    }
+
+    .form-control {
+      width: 50%;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      background-color: rgba(253, 253, 253, 0.958);
+      font-weight: 350;
+      font-family: calibri;
+      transition: 0.4s;
+    }
+    .form-control{
+      border-style: none;
+      /* background-color: rgb(215 215 215); */
+      color:rgb(98, 80, 80);
+    }
+
+
+    .form-control::-webkit-search-cancel-button {
+      display: none;
+    }
+
+
+    .form-control:hover,
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.456);
+      outline: none;
+      box-shadow: none;
+    }
+
+    .btn {
+      border-color: rgb(6, 28, 100);
+      color: rgb(6, 28, 100);
+      transition: 0.4s;
+    }
+
+    .btn:hover {
+      background-color: rgb(6, 28, 100);
+    }
+
+    .navigation-item {
+
+      height: 100%;
+      width: 35%;
+      padding-right: 2%;
+
+    }
+
+    .action-table {
+      width: 100%;
+      height: 100%;
+      border-collapse: separate;
+      justify-content: flex-end;
+      align-items: center;
+      display: grid;
+      z-index: 1;
+      position: relative;
+      border-collapse: collapse;
+    }
+
+    .action table td {
+      display: inline-block;
+    }
+
+    .login-box,
+    .signup-box,
+    .admin-box,
+    .logout-box,
+    .profile-box {
+      border-style: none;
+      background-color: rgba(93, 236, 115, 0.355);
+      transition: 0.3s;
+      font-size: small;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 550;
+      color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 91px;
+      height: 40px;
+    }
+
+    .login-box:hover,
+    .signup-box:hover,
+    .admin-box:hover {
+      background-color: rgb(0, 0, 0);
+      color: white;
+    }
+
+    .logout-box:hover {
+      background-color: rgb(239, 51, 36);
+      color: white;
+    }
+
+    .profile-box:hover {
+      transition: 0.5s;
+      transform: scale(1.2);
+    }
+
+    .action table .btn-primary,
+    .action table .btn {
+      border-style: none;
+      background-color: rgb(6, 28, 100);
+    }
+
+    .action table .btn:hover {
+      background-color: rgb(256, 256, 256);
+    }
+
+
+    .action-table td {
+      width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .category-navigation {
+      display: flex;
+      background-color: rgba(0, 0, 0);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .category-name {
+      font-size: small;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: rgba(0, 0, 0, 0.574);
+      font-weight: 550;
+      border-style: none;
+      width: fit-content;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 45px;
+      display: flex;
+      color: rgb(256, 256, 256);
+      justify-content: center;
+      align-items: center;
+      transition: 0.5s;
+    }
+
+    .category-name:hover {
+      background-color: rgba(255, 255, 255, 0.166);
+      color:rgb(178 255 198);
+      border-bottom-width: 3px;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      border-top-width: 0px;
+      border-style: solid;
+      border-color: rgb(255, 255, 255);
+      padding-left: 13px;
+      padding-right: 13px;
+    }
+
+    .carousel-item {
+      transition: 0.6s;
+    }
+
+    .carousel-control-next-icon:hover,
+    .carousel-control-prev-icon:hover {
+      transition: 0.5s;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 100%;
+
+    }
+
+    /*brands for you*/
+    .brands-for-you {
+      width: 100%;
+      height: 27vh;
+    }
+
+    .brands-for-you-text {
+      width: 100%;
+      height: 5vh;
+      font-style: oblique;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 124%;
+      color: dimgrey;
+      text-align: center;
+      padding-top: 0.4%;
+    }
+
+    .brand-image-box-outer {
+      width: 100%;
+      height: 21vh;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .brand-images-boxes {
+      width: 100%;
+      height: 93%;
+      margin-inline: 0.50%;
+      background-size: contain;
+      background-color: rgb(256, 256, 256);
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-style: none;
+      font-size: medium;
+      color: #000;
+      transition: 0.5s;
+    }
+
+    .brand-image-box-outer form {
+      width: 100%;
+      height: 100%;
+    }
+
+    .brand-images-boxes:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      /* Adjust shadow values as needed */
+
+    }
+
+    /*types for you*/
+    .info-cards {
+      width: 100%;
+      height: 20vh;
+      background-color: rgba(256, 256, 256);
+      padding-block: 2.5%;
+    }
+
+
+    .cards-outer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      width: 100%;
+    }
+
+    .card-n-outer {
+      height: 16%;
+      width: 18%;
+      padding: 1%;
+      margin-inline: 3.1%;
+      background-color:#108d38e6;
+      border-radius: 9px;
+      transition: 0.3s ease-in-out;
+    }
+
+    .card-n-outer:hover {
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-n-inner {
+      height: 100%;
+      width: 100%;
+      ;
+      background-color: none;
+      transition: 0.3s ease-in-out;
+    }
+
+    .card-n-image {
+      height: 10%;
+      width: 5%;
+      margin: -3.1%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .card-text-heading {
+      font-size: 99%;
+      color: rgb(256, 256, 256);
+      text-align: center;
+      margin: auto;
+    }
+
+    .about-outer {
+      width: 100%;
+      height: 50%;
+      background-color: rgb(233 232 228 / 39%);
+    }
+
+    .about-left {
+      width: 50%;
+      height: 100%;
+      float: left;
+      background-color: transparent;
+    }
+
+    .about-right {
+      width: 50%;
+      height: 100%;
+      padding-top: 5%;
+      padding-inline: 3%;
+      display: grid;
+
+      background-color: transparent;
+      float: right;
+    }
+
+    .connect-with-us {
+      margin-top: 5%;
+      display: inline-flex;
+      width: 100%;
+      height: 60%;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: center;
+    }
+
+    .connect-with-us h5 {
+      font-size: 99%;
+      color: rgb(0, 0, 0);
+      text-align: center;
+    }
+
+    .social-media th {
+      border-width: 75px;
+      border-color: transparent;
+      border-top: 0px;
+      border-bottom: 0px;
+    }
+
+    .absolute td {
+      background-color: white;
+    }
+    .jobs{
+      width: 100%;
+    min-height: 100vh;
+    display: table-caption;
+    padding-bottom: 1.3%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    }
+    .job_outer{
+      width: 60vh;
+    height: 43vh;
+    border-radius: 14px;
+    margin: 1%;
+    margin: auto;
+    padding: 1%;
+    /* border-style: solid; */
+    border-width: 1px;
+    background-color: rgb(243 243 243);
+    transition: 0.5s;
+    background-size: cover;
+    background-image: url('../static/premium.png');
+
+    }
+    .job_outer:hover{
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);  
+
+    }
+    .job_title{
+      width: 100%;
+    height: 10%;
+    display: flex;
+    margin-top: 1vh;
+    justify-content: center;
+    align-items: center;
+    }
+    .company{
+      width: 73%;
+    height: 14%;
+    /* background-color: rgb(256, 256, 256); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin:auto;
+    }
+    .job_details{    width: 100%;
+    height: 75%;
+    margin-top: 2%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Times New Roman;
+    font-weight: 600;
+    }
+    .apply_button{
+      width: 50%;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    }
+    .location_image{
+      width: 10%;
+    height: 10%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    }
+    .btn
+    {
+      width: 86%;
+    border: none;
+    /* background-color: black; */
+    color: white;
+    border-radius: 10px;
+    }
+    .btn:hover
+    {
+
+    color: white;
+    /* background-color: #ff0b0b; */
+    }
+    .marquee-container {
+    overflow: hidden;
+    width: 100%; /* Adjust the width as needed */
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+option
+{
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  background-color: white;
+  border-style: none;
+  transition: 0.5s;
+}
+select
+{
+  width: 100%;
+  height: 100%;
+  border-style: none;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: 0.5s;
+
+}
+
+.kode-mono-regular {
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 21px;
+  color: white;
+}
+
+.kode-mono-regular-1 {
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 15px;
+  color: rgb(249, 5, 5);
+}
+
+.bungee-spice-regular {
+  font-family: "Bungee Spice", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pixelify-sans-sub-title {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+.content-section{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+.content-section-left
+{
+    padding-block-start: 6%;
+}
+select {
+  width: 47vh;
+    height: 6vh;
+    border-style: none;
+    background-color: white;
+    color: #26964b;
+    text-align: center;
+    font-weight: 400;
+    border:none;
+
+    border-radius: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: 0.5s;
+  }
+  option:hover,option:focus,select:hover,select:focus
+  {
+    border: none;
+  }
+  option
+  {
+    color: white;
+    background-color: #000000;
+  }
+    
+
+  </style>
+
+</head>
+
+<body>
+
+    <div class="home-outer">
+
+        <div class="top-navigation">
+          <div class="navigation-logo"  style="background-image: url('{% static "Picture33.png" %}');"></div>
+          <!-- <div class="search-bar"><input type="search" placeholder="Search for home appliances"></div> -->
+          <nav class="navbar bg-body-tertiary">
+          </nav>
+          <div class="navigation-item">
+            <table class="action-table">
+              <tr>
+                {% if user_type == 'None' %}
+                <td><a href="login"><button class="login-box" name="login">Login</button></a></td>
+                <td><a href="signin"><button class="signup-box" name="signup">Sign Up</button></a></td>
+                <!-- else if usertype="AD" -->
+                {% elif user_type == 'AD' %}
+                <td><a href="admin_page"><button class="login-box" name="login">Dashboard</button></a></td>
+                <td><a href="logout"><button class="logout-box" name="logout">Logout</button></a></td>
+                {% elif user_type == 'ST' %}
+                <td><a href="admin_page"><button class="login-box" name="login">Dashboard</button></a></td>
+                <td><a href="logout"><button class="logout-box" name="logout">Logout</button></a></td>
+                {% elif user_type == 'EM' %}
+                <td><a href="emp_dashboard"><button class="login-box" name="login">Dashboard</button></a></td>
+                <td><a href="logout"><button class="logout-box" name="logout">Logout</button></a></td>
+                {% elif user_type == 'AP' %}
+                <td><a href="applicant_page"><button class="login-box" name="login">Profile</button></a></td>
+                <td><a href="logout"><button class="logout-box" name="logout">Logout</button></a></td>
+                {% endif %}
+              </tr>
+            </table>
+          </div>
+        </div>
+            <div class="category-navigation">
+              <a href="index"><button class='category-name' name='category' value='$categoryid' >Home</button></a> 
+              <a href="list_jobs"><button class='category-name' name='category' value='$categoryid'>Jobs</button></a>
+              <a href="list_all_events"><button class='category-name' name='category' value='$categoryid' style='display: inline-block;'>Events</button></a>
+              <a href="list_all_plans"><button class='category-name' name='category' value='$categoryid' style='color:red;font-weight: 700;'>Plans</button></a>
+            </div>
+          </div>
+              
+        <div class="content-section">
+
+
+              <div class="job_outer">
+                <form>
+                 
+          
+                  <div class="job_title marquee-container"  style="margin-top: 6%;">
+                          <h3 class="bungee-spice-regular">{{ plan.Plan_Title|upper }}</h3>
+                  </div>
+          
+          
+                  <div class="company">
+                    <h3 class="pixelify-sans-sub-title">{{ plan.Plan_Level|upper }}</h3>
+                  </div>
+          
+                  <div class="job_details">
+                      <table class="job_details">
+                    
+                          <tr>
+                            {% if plan.Plan_Duration == "1" %}
+                              <td>Validity: {{ plan.Plan_Duration }} month</td>
+                            {% else %}
+                              <td>Validity: {{ plan.Plan_Duration }} months</td>
+                            {% endif %}
+                          </tr>
+                         
+                          <tr>
+                              <td>₹&nbsp{{ plan.Price }}</td>
+                          </tr>
+                          
+                          <tr>
+                              <td><p style="display: flex;justify-content: space-around;align-items: center;">{{ plan.Plan_Description }}<p></td>
+                          </tr>
+                          
+                      </table>
+
+
+
+
+
+
+
+
+                      
+                  </div>
+                </form>
+                </div>
+
+
+
+
+            <div class="content-section-left">
+              {% if proceed == 'False' or not proceed %}
+              <div style="    height: 7vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;">
+                <div class="card-outer">
+                    <table><tr><td class="card-heading kode-mono-regular-1">You have already subscribed to one of our plans; please cancel your current membership before purchasing a new plan.</th></tr></table>
+                    </div>
+                  </div>
+              {% else %}
+                <form action="../make_payment" method="POST"
+                    style="    height: 27vh;
+                    width: 103%;
+                    display: flex;
+                    background-color: #27984c;
+                    justify-content: center;
+                    border-radius: 10px;
+                    align-items: center;
+                    text-align: center;">
+                    {% csrf_token %}
+                    <div class="card-outer">
+                        <div class="card-heading kode-mono-regular">Pay: ₹{{total}} including taxes</div>
+                        <div class="input-card-details">
+
+                          
+                          <input type="hidden" value="{{ total }}" name="total">
+                          <!-- {{ plan.Plan_Duration }} -->
+                          <input type="hidden" value="{{ plan.Plan_Duration }}" name="plan_duration">
+                            
+                          <input type="hidden" value="{{ plan.id }}" name="plan_id">
+
+                            <div class="input-box" style="margin-block: 5%;">
+                                <!-- <label for="card-number">Card Number</label> -->
+                                <select name="card_id" id="" required>
+                                  <option disabled selected>Select Card</option>
+                                  {% for card in cards %}
+                                  <option value="{{card.id}}">{{card.Card_No}}</option>
+                                  {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="input-box"
+                                style="    border-radius: 10px;
+                                width: 100%;
+                                height: 9vh;
+                                border: none;
+                                display: contents;
+                                justify-content: center;
+                                align-items: center; ">
+                                <button type="submit" name="pay" style="    width: 16vh;
+                                height: 6vh;
+                                border: none;
+                                border-radius: 10px;
+                                background-color: #2b92f6;
+                                color: white;">Pay</button>
+                          </div>
+                        </div>
+                    </div>
+                </form>
+              {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+{% load static %} 
+{% block content %}
+
+<html>
+<head>
+  
+<link rel="icon" type="image/x-icon" href="favicon.png">
+  <title>Sign Up</title>
+  <style>
+    body {
+      
+      background-image: url("{% static "background.jpeg" %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+
+    }
+
+    .outercontainer {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 10vh;
+    }
+
+    .registration-box {
+	background-color: rgba(256,256,256,0.9);
+	padding: 25px;
+	border-radius: 10px;
+	width: fit-content;
+	text-align: center;
+	transition: 0.5s;
+    }
+
+    .registration-box:hover {
+      transform: scale(1.01);
+    
+    }
+
+    .registration-box-logo {
+      background-image: url('{% static "Picture44.png" %}');
+      margin: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height:80px;
+      width:263px;
+
+    }
+
+    .registration-box-heading {
+      font-family:Times New Roman, Times, serif;
+      margin: auto;
+      color: #108d38e6;
+      margin-bottom: 20px;
+      font-weight: 800;
+      font-size: 180%;
+    }
+
+    .registration-form
+    {
+      display: flex;
+    }
+
+    .registration-box input[type="text"],
+    .registration-box input[type="email"],
+    .registration-box input[type="tel"],
+    .registration-box input[type="number"],
+    .registration-box input[type="password"],
+    .registration-box input[type="date"],
+    .registration-box input[type="url"],
+    .registration-box input[type="file"],
+    .registration-box input[type="time"],
+    .registration-box select {
+    width: 344px;
+    padding: 7px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-color: #108d38e6;
+    background-color: rgba(142, 212, 175, 0.352);
+    border-width: 1px;
+    border-style: double;
+    border-radius: 5px;
+    color:#108d38e6;
+    text-align: initial;
+    }
+
+
+    .registration-box input[type="text"]:focus,
+    .registration-box input[type="email"]:focus,
+    .registration-box input[type="tel"]:focus,
+    .registration-box input[type="password"]:focus,
+    .registration-box input[type="number"]:focus
+    .registration-box input[type="date"]:focus,
+    .registration-box input[type="url"]:focus,
+    .registration-box input[type="file"]:focus,
+    .registration-box input[type="time"]:focus,
+    
+    {
+      background-color: rgba(118, 224, 155, 0.5);
+      outline: none;
+      border-color:#108d38e6;
+      color:rgb(0,0,0);
+      box-shadow: 0 0 10px #9ecaed;
+    }
+
+    ::placeholder{
+      color: rgb(0,0,0,0.8);
+    }
+
+   label
+   {
+    color: rgba(0,0,0);
+    text-align: left;
+    font-size: medium;
+    display: block;
+    margin-left: 20px;
+   }
+
+
+    .registration-form-left,
+    .registration-form-right
+    {
+      flex-basis: 45%; 
+    }
+
+    option
+    {
+      background-color:rgb(256,256,256);
+      color:rgb(0,0,0);
+    }
+
+
+    .registration-box button {
+    background-color: rgb(255,216,21);
+    border-radius: 5px;
+    color: white;
+    width: 180px;
+    margin-top: 3vh;
+    cursor: pointer;
+    padding: 8px 5px;
+    border: none;
+    font-size: 19px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    width: 241px;
+    }
+    .registration-box button:hover {
+      transition: 0.2s;
+    }
+    textarea
+    {
+      width: 90%;
+    height: 13%;
+    padding: 7px;
+    border-color: #108d38e6;
+    background-color: rgba(142, 212, 175, 0.352);
+    color: #108d38e6;
+    text-align: initial;
+    border-radius: 13px;
+    }
+
+  </style>
+  </head>
+<body>
+  <div class="outercontainer">
+    <div class="registration-box">
+      <div class="registration-box-logo"></div>
+      <div class="registration-box-heading">Register as Applicant</div>
+      <form action="reg_event" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div class="registration-form">
+          <div class="registration-form-left">
+
+            <!-- return render(request,"add_event.html",{'user_type':user_type,'email':email}) -->
+            <input type="hidden" name="staff_email" value="{{email}}">
+   
+            <label for="firstName">Event Title</label>
+            <input type="text" id="firstName" name="event_title" placeholder="Title" maxlength="20" required>
+
+           
+
+            <label for="venue">Event Venue</label>
+            <input type="text" id="venue" name="event_venue" placeholder="Venue of Event" maxlength="150" required>
+
+          
+
+            <label for="district">District</label>
+            <input type="text" id="district" name="event_dist" placeholder="District of Venue" maxlength="25" required>
+
+           
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="event_email" placeholder="Email of Organizer" maxlength="25" required>
+
+           
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+           
+
+            <label for="description">Description</label>
+            <textarea id="description" name="event_description" placeholder="Description" maxlength="150" required></textarea>
+
+
+
+
+          </div>
+
+          <div class="registration-form-right">
+
+            <label for="email">Event Organizer</label>
+            <input type="text" id="email" name="event_organizer" placeholder="Event Organizer" maxlength="20" required>
+            <label for="street">Street</label>
+            <input type="text" id="street" name="event_street" placeholder="Street of Venue" maxlength="20" required>
+            <label for="state">State</label>
+            <input type="text" id="state" name="event_state" placeholder="State of Venue" maxlength="25" required>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="event_phone" placeholder="Phone Number of Organizer" pattern="[0-9]{10}" required title="Enter a valid phone number">
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time" required>
+
+          </div>
+        </div>
+        <button type="submit" name="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</body>
+  </html>
+{% endblock %}

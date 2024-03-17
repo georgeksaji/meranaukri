@@ -1,0 +1,222 @@
+{% load static %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <style>
+        body {
+            font-family: "Jost", sans-serif;
+        }
+
+        .container {
+            border: 1px #ccc solid;
+        }
+
+        .receipt {
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+
+        }
+
+        .receipt f {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .receipt table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .receipt th,
+        .receipt td {
+
+            padding: 8px;
+            text-align: left;
+        }
+
+        .receipt tfoot {
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 7px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        th {
+
+            font-weight: bold;
+        }
+
+        .order-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dtls,
+        .sum {
+            width: 49%;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .merriweather-light {
+        font-family: "Merriweather", serif;
+        font-weight: 300;
+        font-style: normal;
+        }
+
+        .merriweather-regular {
+        font-family: "Merriweather", serif;
+        font-weight: 500;
+        font-style: normal;
+        }
+
+        .merriweather-bold {
+        font-family: "Merriweather", serif;
+        font-weight: 700;
+        font-style: normal;
+        }
+
+        .merriweather-black {
+        font-family: "Merriweather", serif;
+        font-weight: 900;
+        font-style: normal;
+        }
+
+        .merriweather-light-italic {
+        font-family: "Merriweather", serif;
+        font-weight: 300;
+        font-style: italic;
+        }
+
+        .merriweather-regular-italic {
+        font-family: "Merriweather", serif;
+        font-weight: 400;
+        font-style: italic;
+        }
+
+        .merriweather-bold-italic {
+        font-family: "Merriweather", serif;
+        font-weight: 700;
+        font-style: italic;
+        }
+
+        .merriweather-black-italic {
+        font-family: "Merriweather", serif;
+        font-weight: 900;
+        font-style: italic;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <body>
+    <div class="container">
+        <div class="receipt">
+            <div class="logo">
+                <h2 class="merriweather-bold" style="color:#2b8f4a; font-size: 40px;">MeraNaukri</h2>
+                <f>Where Opportunities and Talent Converge!</f>
+                <f>MN Towers, Kochi, Kerala</f>
+                <f>Ph: +91 9495224376 </f>
+            </div>
+            <h1 style="text-align: center;">Receipt</h1>
+            {% for i in details %}
+
+            <div class="order-details">
+                <div class="dtls">
+                        <h3>Billing Details</h3>
+                        <p>Customer Name: {{ i.Applicant_Fname }} {{ i.Applicant_Lname }}</p>
+                        <p>Delivery Address: {{ i.App_Hname }}, {{ i.App_Street }}, {{ i.App_Dist }}</p>
+                        <p>Invoice Date: {{ i.Today }}</p>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="sum">
+                        <h3>Order Summary</h3>
+                        <p>Price:₹ {{ i.Price }}</p>
+                        <!-- <p> </p> -->
+                        <p>GST: 1%</p>
+                        <p>Total Amount: ₹ {{ i.Total_Price }}/-</p>
+                </div>
+            </div>
+
+            <!-- Receipt Table -->
+            <div class="table">
+                <table>
+                    <colgroup>
+                        <col width="6%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Plan Name</th>
+                            <th>Plan Level</th>
+                            <th>Plan Duration</th>
+                            <th>Payment Date</th>
+                            <th>Validity/Terminated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through items and display details -->
+                        <tr>
+                            <td>1.</td>
+                            <td>{{ i.Plan_Title }}</td>
+                            <td>{{ i.Plan_Level }}</td>
+                            <td>{{ i.Plan_Duration }} months</td>
+                            <td>{{ i.Date_of_payment }}</td>
+                            <td>{{ i.Expiry_Date }}</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                    <!-- Table Footer -->
+                    <tfoot>
+                        <tr class="total">
+                            <td colspan="4">GST: 1%</td>
+                            <td colspan="2">Total Amount:₹ {{ i.Total_Price }}/-</td>
+                        </tr>
+                        {% endfor %}
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            window.addEventListener('afterprint', function () {
+                window.location.href = '../my_subscriptions';
+            });
+            window.print();
+        };
+    </script>
+    
+</body>
+</html>
+
+{% endblock %}
